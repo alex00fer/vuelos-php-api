@@ -13,7 +13,7 @@ function delete($data) {
 
   if ($conn->query($miQuery)) {
     if ($conn->affected_rows < 1)
-    die(format_error("Codigo no encontrado"));
+    die(format_error("Code not found"));
     $result = array(
       "success" =>  true,
       "message" => "Deleted sucessfully",

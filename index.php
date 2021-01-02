@@ -4,25 +4,26 @@
 require 'utils.php';
 
 $request = json_decode(file_get_contents('php://input'), true);
-assert_array_fields($request, "action", "data");
+//assert_array_fields($request, "action", "data");
 
-switch ($request["action"]) {
-  case "create":
+switch ($_SERVER['REQUEST_METHOD']) {
+  case "POST":      // create
     require 'insert.php';
-    insert($request['data']);
+    insert($request);
     break;
-  case "read":
+  case "GET":       // read
 
     break;
-  case "update":
-
+  case "PUT":       // update
+    require 'update.php';
+    update($request);
     break;
-  case "delete":
+  case "DELETE":    // delete
     require 'delete.php';
-    delete($request['data']);
+    delete($request);
     break;
   default:
-    die(format_error("Invalid action"));
+    die(format_error("Invalid request type"));
 }
 
 //print_r($request);
