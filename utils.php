@@ -17,6 +17,7 @@ function assert_array_fields($obj, ...$list){
   }
 }
 
+// Formatea un error en JSON
 function format_error($msg) {
   $result = array (
     "success"  => false,
