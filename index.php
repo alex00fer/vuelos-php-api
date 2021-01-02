@@ -11,8 +11,9 @@ switch ($_SERVER['REQUEST_METHOD']) {
     require 'insert.php';
     insert($request);
     break;
-  case "GET":       // read
-
+  case "GET":       // read / search
+    require 'read.php';
+    read($request);
     break;
   case "PUT":       // update
     require 'update.php';
