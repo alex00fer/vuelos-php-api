@@ -12,13 +12,13 @@ function update($data) {
   $nuevo_codigo = mysqli_real_escape_string($conn, $data['nuevo_codigo']);
   $origen = mysqli_real_escape_string($conn, $data['origen']);
   $destino = mysqli_real_escape_string($conn, $data['destino']);
-  $fecha = intval(mysqli_real_escape_string($conn, $data['fecha']));
+  $fecha = (mysqli_real_escape_string($conn, $data['fecha'])) + 0;
   $hora = mysqli_real_escape_string($conn, $data['hora']);
   $plazas = intval(mysqli_real_escape_string($conn, $data['plazas']));
   $plazas_libres = intval(mysqli_real_escape_string($conn, $data['plazas_libres']));
   $miQuery  = "DELETE FROM vuelos WHERE codigo = '$codigo'";
 
-  $miQuery  = "UPDATE vuelos SET codigo = '$nuevo_codigo', origen = '$origen' , destino = '$destino', fecha = (FROM_UNIXTIME($fecha)), hora = '$hora', plazas = $plazas, plazasLibres = $plazas_libres ";
+  $miQuery  = "UPDATE vuelos SET codigo = '$nuevo_codigo', origen = '$origen' , destino = '$destino', fecha = (FROM_UNIXTIME($fecha/1000)), hora = '$hora', plazas = $plazas, plazasLibres = $plazas_libres ";
   $miQuery .= "WHERE  codigo = '$codigo'";
   
   if ($conn->query($miQuery)) {

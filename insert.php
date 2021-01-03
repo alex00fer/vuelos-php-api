@@ -11,14 +11,14 @@ function insert($data) {
   $codigo = mysqli_real_escape_string($conn, $data['codigo']);
   $origen = mysqli_real_escape_string($conn, $data['origen']);
   $destino = mysqli_real_escape_string($conn, $data['destino']);
-  $fecha = intval(mysqli_real_escape_string($conn, $data['fecha']));
+  $fecha = (mysqli_real_escape_string($conn, $data['fecha'])) + 0;
   $hora = mysqli_real_escape_string($conn, $data['hora']);
   $plazas = intval(mysqli_real_escape_string($conn, $data['plazas']));
   $plazas_libres = intval(mysqli_real_escape_string($conn, $data['plazas_libres']));
   $miQuery  = "DELETE FROM vuelos WHERE codigo = '$codigo'";
 
   $miQuery  = "INSERT into vuelos (codigo, origen, destino, fecha, hora, plazas, plazasLibres)";
-  $miQuery .= " VALUES ('$codigo','$origen','$destino',(FROM_UNIXTIME($fecha)),'$hora',$plazas,$plazas_libres)";
+  $miQuery .= " VALUES ('$codigo','$origen','$destino',(FROM_UNIXTIME($fecha/1000)),'$hora',$plazas,$plazas_libres)";
   
   if ($conn->query($miQuery)) {
 

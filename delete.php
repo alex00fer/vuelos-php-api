@@ -9,7 +9,10 @@ function delete($data) {
   $conn = get_conn();
 
   $codigo = mysqli_real_escape_string($conn, $data['codigo']);
-  $miQuery  = "DELETE FROM vuelos WHERE codigo = '$codigo'";
+  if ($codigo === "*")
+    $miQuery  = "DELETE FROM vuelos";
+  else
+    $miQuery  = "DELETE FROM vuelos WHERE codigo = '$codigo'";
 
   if ($conn->query($miQuery)) {
     if ($conn->affected_rows < 1)
