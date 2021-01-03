@@ -4,7 +4,6 @@
 require 'utils.php';
 
 $request = json_decode(file_get_contents('php://input'), true);
-//assert_array_fields($request, "action", "data");
 
 switch ($_SERVER['REQUEST_METHOD']) {
   case "POST":      // create
@@ -26,5 +25,3 @@ switch ($_SERVER['REQUEST_METHOD']) {
   default:
     die(format_error("Invalid request type"));
 }
-
-//print_r($request);

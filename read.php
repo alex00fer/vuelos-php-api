@@ -32,11 +32,9 @@ function read($data) {
     } else {    // Table is empty
       die(format_error("No results"));
     }
-  
-    
-  
   } else {  // Error en la query
     die(format_error("Internal error: ".$conn->error));
   }
 }
+
 ?>
