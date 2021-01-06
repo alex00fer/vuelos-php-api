@@ -16,6 +16,8 @@ switch ($_SERVER['REQUEST_METHOD']) {
     break;
   case "GET":       // read / search
     require 'read.php';
+    if (isset($_GET["search"]))
+      $request = json_decode(urldecode($_GET["search"]), true);
     read($request);
     break;
   case "PUT":       // update
