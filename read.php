@@ -2,12 +2,14 @@
 
 require_once 'dbConnect.php';
 require_once 'utils.php';
+require_once 'readSearch.php';
 
 function read($data) {
 
   $conn = get_conn();
 
   $query = "SELECT * FROM vuelos";
+  @addQuerySearch($conn, $query, $data); // add search based on $data
   $result = $conn->query($query);
 
   if(isset($result) && $result){
@@ -22,7 +24,7 @@ function read($data) {
 
       $result = array(
         "success" =>  true,
-        "message" => "Updated sucessfully",
+        "message" => "$contador items found",
         "num_vuelos" => $contador,
         "vuelos" => $arrayVuelos
       );
