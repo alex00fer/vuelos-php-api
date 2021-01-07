@@ -1,15 +1,27 @@
 ## API Vuelos en PHP
+
 #### Para configurar la BBDD:
 Modificar las propiedades del fichero `dbConnection.php`
+
 ### CRUD API
-Tiene un único punto de acceso: `/` o `/index.php`
+Tiene un único punto de acceso: `/` o `/index.php`.
+Las respuestas siempre incluirán el campo booleano `success` que indicará si la operación se completo correctamente o no.
+
 #### Read (get)
 **GET**
 
-*empty:* devuelve todos los vuelos.
-```
+*Sin nada:* devuelve todos los vuelos.
 
+Para hacer una búsqueda:
 ```
+{
+    "codigo": "",
+	"origen": "Londres",
+	"destino": ""
+}
+```
+En caso de no poder incluir cuerpo en la peticion GET enviar este JSON como parametro ?search={json} donde {json} es el JSON codificado para urls. (url_encoded)
+
 #### Create (insert)
 **POST**
 ```
@@ -23,6 +35,7 @@ Tiene un único punto de acceso: `/` o `/index.php`
 	"plazas_libres": 300
 }
 ```
+
 #### Update
 **PUT**
 ```
@@ -37,6 +50,7 @@ Tiene un único punto de acceso: `/` o `/index.php`
 	"plazas_libres": 300
 }
 ```
+
 #### Delete
 **DELETE**
 ```
