@@ -24,7 +24,7 @@ function update($data) {
   if ($conn->query($miQuery)) {
 
     if ($conn->affected_rows < 1)
-      die(format_error("Code not found"));
+      die(format_error("Code not found or no changes were made"));
 
     $result = array(
       "success" =>  true,
